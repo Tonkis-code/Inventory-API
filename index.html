@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inventory Managment System</title>
+        <style>
+            body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+            h1 { color: #333; }
+            .endpoint { background: #f4f4f4; padding: 15px; margin: 10px 0; border-radius: 5px; }
+            .method { font-weight: bold; color: #0066cc; }
+            a { color: #0066cc; text-decoration: none; }
+            a:hover { text-decoration: underline;}
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to my Inventory Managment System API</h1>
+        <h2>Available Endpoints</h2>
+
+        <div class="endpoint">
+            <span class="method">GET</span>
+            <a href="/api/products">/api/products</a> - Get all products
+        </div>
+
+        <div class="endpoints">
+            <span class="method">GET</span>
+            /api/products/:id - Get a single product 
+            <a href="/api/products/1">/api/products/1</a>
+        </div>
+
+        <div class="endpoint">
+            <span class="method">POST</span>
+            /api/products - Add a new product
+        </div>
+
+        <div class="endpoint">
+            <span class="method">PUT</span>
+            /api/products/:id - Update a product
+        </div>
+
+        <div class="endpoint">
+            <span class="method">DELETE</span>
+            /api/products/:id - Delete a product
+        </div>
+
+        <p><strong>Note:</strong>POST, PUT, and DELETE require tools like Bruno to test.</p>
+    </body>
+</html>
