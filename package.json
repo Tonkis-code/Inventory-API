@@ -2,7 +2,8 @@
   "name": "jsapi",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.mjs",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.mjs",
@@ -15,8 +16,5 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "pg": "^8.16.3"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.11"
   }
 }
