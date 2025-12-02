@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM products ORDER BY id');
-        
+
         res.json({
             success: true,
             count: result.rows.length,
@@ -29,17 +29,17 @@ router.get('/:id', async (req, res) => {
             'SELECT * FROM products WHERE id = $1',
             [req.params.id]
         );
-        
+
         if (result.rows.length === 0) {
             return res.status(404).json({
                 success: false,
                 message: 'Product not found'
             });
         }
-        
-        res.json({ 
-            success: true, 
-            product: result.rows[0] 
+
+        res.json({
+            success: true,
+            product: result.rows[0]
         });
     } catch (error) {
         res.status(500).json({
@@ -54,21 +54,21 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const { name, quantity, price, category } = req.body;
-        
+
         if (!name || quantity === undefined || price === undefined) {
             return res.status(400).json({
                 success: false,
                 message: 'Name, quantity and price are required'
             });
         }
-        
+
         const result = await pool.query(
             `INSERT INTO products (name, quantity, price, category)
              VALUES ($1, $2, $3, $4)
              RETURNING *`,
             [name, parseInt(quantity), parseFloat(price), category || 'General']
         );
-        
+
         res.status(201).json({
             success: true,
             message: 'Product added successfully',
@@ -87,20 +87,20 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const { name, quantity, price, category } = req.body;
-        
+
         // Check if product exists
         const checkResult = await pool.query(
             'SELECT * FROM products WHERE id = $1',
             [req.params.id]
         );
-        
+
         if (checkResult.rows.length === 0) {
             return res.status(404).json({
                 success: false,
                 message: 'Product not found'
             });
         }
-        
+
         const result = await pool.query(
             `UPDATE products 
              SET name = COALESCE($1, name),
@@ -118,7 +118,7 @@ router.put('/:id', async (req, res) => {
                 req.params.id
             ]
         );
-        
+
         res.json({
             success: true,
             message: 'Product updated successfully',
@@ -140,14 +140,14 @@ router.delete('/:id', async (req, res) => {
             'DELETE FROM products WHERE id = $1 RETURNING *',
             [req.params.id]
         );
-        
+
         if (result.rows.length === 0) {
             return res.status(404).json({
                 success: false,
                 message: 'Product not found'
             });
         }
-        
+
         res.json({
             success: true,
             message: 'Product deleted successfully',
