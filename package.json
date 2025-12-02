@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.mjs",
-    "dev": "nodemon src/app.mjs"
+    "dev": "node --watch src/app.mjs"
   },
   "keywords": [],
   "author": "",
